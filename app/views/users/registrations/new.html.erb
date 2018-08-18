@@ -1,0 +1,31 @@
+<% provide(:title, "Registrazione") %>
+<h1>Registrazione</h1>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+
+            <%= f.label :nome %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "email", class: 'form-control' %>
+
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+                <em>(minimo <%= @minimum_password_length %> caratteri)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+
+            <%= f.label "Conferma password".to_sym %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+
+            <%= f.submit "Registrati", class: "btn btn-primary btn-block" %>
+        <% end %>
+
+        <hr/>
+
+        <%= render "users/shared/links" %>
+    </div>
+</div>

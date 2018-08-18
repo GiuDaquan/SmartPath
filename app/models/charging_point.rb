@@ -1,0 +1,2 @@
+class ChargingPoint < ApplicationRecord
+end

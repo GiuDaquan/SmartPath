@@ -1,0 +1,39 @@
+<% provide(:title, "Aggiorna informazioni") %>
+<h1> Aggiorna informazioni </h1>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+            <%= devise_error_messages! %>
+
+            <%= f.label :nome %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "email", class: 'form-control' %>
+
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>
+                    Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+                </div>
+            <% end %>
+
+            <%= f.label :password %> <i>(Lascia vuoto se non intendi modificare la password)<i>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+
+            <%= f.label "Conferma password".to_sym %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+
+            <%= f.label "Password corrente".to_sym %>
+            <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+
+            <%= f.submit "Aggiorna", class: "btn btn-primary btn-block" %>
+
+        <% end %>
+
+        <hr/>
+
+        <%= link_to "Cancella il mio account", registration_path(resource_name), data: { confirm: "Sei sicuro?" }, method: :delete %>
+    </div>
+</div>
