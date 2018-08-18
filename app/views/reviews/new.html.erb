@@ -1,0 +1,17 @@
+<% provide(:title, "New Review") %>
+<h1> Compose new review </h1>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<section class="review_form">
+			<%= form_for(@review) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="field">
+					<%= f.text_area :content, placeholder: "Compose new review..." %>
+					<%= f.text_field :rating, placeholder: "Insert rating [0-5]" %>
+					</div>
+					<%= f.submit "Post", class: "btn btn-primary" %>
+			<% end %>
+		</section>
+	</div>
+</div>

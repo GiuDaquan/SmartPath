@@ -1,5 +1,5 @@
-<% provide(:title, "Aggiorna informazioni") %>
-<h1> Aggiorna informazioni </h1>
+<% provide(:title, "Update") %>
+<h1> Update your credentials </h1>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -7,7 +7,7 @@
 
             <%= devise_error_messages! %>
 
-            <%= f.label :nome %>
+            <%= f.label :Username %>
             <%= f.text_field :name, autofocus: true, autocomplete: "email", class: 'form-control' %>
 
             <%= f.label :email %>
@@ -19,21 +19,21 @@
                 </div>
             <% end %>
 
-            <%= f.label :password %> <i>(Lascia vuoto se non intendi modificare la password)<i>
+            <%= f.label :password %> <i>(Leave empty if you want to keep your password)<i>
             <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
 
-            <%= f.label "Conferma password".to_sym %>
+            <%= f.label "Confirm password".to_sym %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
 
-            <%= f.label "Password corrente".to_sym %>
+            <%= f.label "Current password".to_sym %>
             <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
 
-            <%= f.submit "Aggiorna", class: "btn btn-primary btn-block" %>
+            <%= f.submit "Update", class: "btn btn-primary btn-block" %>
 
         <% end %>
 
         <hr/>
 
-        <%= link_to "Cancella il mio account", registration_path(resource_name), data: { confirm: "Sei sicuro?" }, method: :delete %>
+        <%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
     </div>
 </div>

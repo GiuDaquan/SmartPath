@@ -1,5 +1,5 @@
-<% provide(:title, "Password dimenticata?") %>
-<h2>Password dimenticata?</h2>
+<% provide(:title, "Recover") %>
+<h2>Password forgotten?</h2>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -9,7 +9,7 @@
                 <%= f.label :email %><br />
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
 
-                <%= f.submit "Iniva le istruzioni per il reset", class: "btn btn-primary btn-block" %>
+                <%= f.submit "Send reset instructions", class: "btn btn-primary btn-block" %>
 
                 <hr/>
 

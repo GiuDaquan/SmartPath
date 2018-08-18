@@ -1,5 +1,5 @@
-<% provide(:title, "Modifica Password") %>
-<h2>Modifica Password</h2>
+<% provide(:title, "Recover") %>
+<h2>Change Password</h2>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -9,16 +9,16 @@
 
             <%= f.hidden_field :reset_password_token %>
 
-            <%= f.label :password, "Nuova Password" %>
+            <%= f.label :password, "New Password" %>
             <% if @minimum_password_length %>
-                <em>(minimo <%= @minimum_password_length %> caratteri)</em>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %>
             <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control' %>
 
-            <%= f.label :password_confirmation, "Conferma la nuova password" %>
+            <%= f.label :password_confirmation, "Confirm new password" %>
             <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
 
-            <%= f.submit "Cambia password", class: "btn btn-primary btn-block" %>
+            <%= f.submit "Change password", class: "btn btn-primary btn-block" %>
 
         <% end %>
 

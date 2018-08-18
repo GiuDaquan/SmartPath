@@ -1,0 +1,27 @@
+<% provide(:title, 'Reviews') %>
+<h1>Reviews</h1>
+
+<%= will_paginate %>
+
+<ul class="reviews">
+	<%= render @reviews %>
+</ul>
+
+<%= will_paginate %>
+
+<% if user_signed_in? %>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-4">
+		<% if !user_has_review %>
+			<%= link_to "Post a review", new_review_path %> <br/>
+		<% else %>
+			<%= link_to "Edit your review", edit_review_path(current_user.review) %> <br/>
+			<%= link_to "Delete your review", current_user.review, method: :delete, data: { confirm: "Are you sure?" } %>
+		<% end %>
+	</div>
+</div>
+
+<% end %>

@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
     root 'static_pages#home'
 
-    get 'static_pages/home'
-    get 'static_pages/about'
-    get 'static_pages/search'
-    get 'static_pages/result'
-    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    get '/about',    to: 'static_pages#about'
+    get 'users/:id', to: 'users#show', as: :user
+
+    resources :reviews
+
 end

@@ -1,0 +1,17 @@
+<% provide(:title, "Edit Review") %>
+<h1> Edit your review </h1>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<section class="review_form">
+			<%= form_for(@review) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="field">
+					<%= f.text_area :content, placeholder: @review.content %>
+					<%= f.text_field :rating, placeholder: @review.rating %>
+					</div>
+					<%= f.submit "Update", class: "btn btn-primary" %>
+			<% end %>
+		</section>
+	</div>
+</div>

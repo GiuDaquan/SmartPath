@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<li id="review=<%= review.id %>">
+	<%= link_to gravatar_for(review.user, size: 70), review.user %>
+	<span class="user"><%= link_to review.user.name, review.user %></span>
+	<span class="content"><%= review.content %></span>
+	<span class="rating">
+		<% review.rating.times do %>
+		<span class="fa fa-star checked"></span>
+		<% end %>
+	</span>
+	<span class="timestamp">
+		Posted on <%= review.created_at %>
+	</span>
+</li>
