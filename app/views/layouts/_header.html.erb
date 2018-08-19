@@ -5,6 +5,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><%= link_to "Home",   root_path %></li>
 				<% if user_signed_in? %>
+				<li><%= link_to "Search Path", search_path %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Account <b class="caret"></b>

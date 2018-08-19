@@ -1,2 +1,56 @@
-<h1>StaticPages#result</h1>
-<p>Find me in app/views/static_pages/result.html.erb</p>
+<% provide(:title, "Result") %>
+<h1> Result </h1>
+
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+
+<div id='map' style="width: 1125px; height: 750px"></div>
+
+<script>
+
+mapboxgl.accessToken = "<%= @token %>"
+
+var map = new mapboxgl.Map({
+	container: 'map',
+	style: 'mapbox://styles/mapbox/streets-v10',
+	zoom: 5,
+	center: <%= @origin_coord %>
+});
+
+map.on('load', function() {
+	console.log(mapboxgl)
+	route = JSON.parse("<%= @route %>".replace(/&quot;/g, "\""))
+	map.addLayer({
+		id: 'route',
+		type: 'line',
+		source: {
+			type: 'geojson',
+			data: {
+				type: 'Feature',
+				geometry: route
+			}
+		},
+		paint: {
+			'line-width': 2
+		}
+	});
+	var way_points = <%= @res %>
+	for (var i = 0; i < way_points.length; i++) {
+		map.addLayer({
+			id: 'waypoint' + i,
+			type: 'circle',
+			source: {
+				type: 'geojson',
+				data: {
+					type: 'Feature',
+					geometry: {
+						type: 'Point',
+						coordinates: way_points[i]
+					}
+				}
+			}
+		});
+	}
+});
+
+</script>

@@ -2,14 +2,35 @@
 
 
 <div class="row">
-    <aside class="col-md-4">
-        <section class="user_info">
-            <h1>
-                <%= gravatar_for @user %>
-            </h1>
-            <h1 class="text-justify">
-                <%= @user.name %>
-            </h1>
-        </section>
-    </aside>
+    <div class="col-md-12">
+        <h1>
+            <%= gravatar_for @user %>
+        </h1>
+        <h1 class="text-justify">
+            <%= @user.name %>
+        </h1>
+    </div>
 </div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Car Models</h2>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Battery capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= render @user.cars %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr/>
+
+<%= link_to "Add a model to your set", new_car_path %>

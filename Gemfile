@@ -18,6 +18,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
 gem 'figaro'
+gem 'http'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

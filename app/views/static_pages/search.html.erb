@@ -1,2 +1,21 @@
-<h1>StaticPages#search</h1>
-<p>Find me in app/views/static_pages/search.html.erb</p>
+<% provide(:title, "Search") %>
+<h1>Search for a smart path</h1>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= form_for(:user_input, url: result_path) do |f| %>
+
+		<%= f.label :car_model %>
+		<%= f.select(:battery_capacity, current_user.cars.map { |c| [c.model, c.battery_capacity] },
+			{ }, { class: "form-control", required: true }) %>
+
+		<%= f.label :origin %>
+		<%= f.text_field :origin, class: 'form-control', required: true %>
+
+		<%= f.label :destination %>
+		<%= f.text_field :destination, class: 'form-control', required: true %>
+
+		<%= f.submit "Search", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>

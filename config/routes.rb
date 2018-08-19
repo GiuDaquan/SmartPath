@@ -4,9 +4,13 @@ Rails.application.routes.draw do
 
     root 'static_pages#home'
 
-    get '/about',    to: 'static_pages#about'
-    get 'users/:id', to: 'users#show', as: :user
+    post '/result',      to: 'static_pages#result'
+    get  '/result',      to: 'static_pages#search'
+    get  '/search',      to: 'static_pages#search'
+    get  '/about',       to: 'static_pages#about'
+    get  'users/:id',    to: 'users#show', as: :user
 
     resources :reviews
+    resources :cars, only: [:new, :create, :edit, :update, :destroy]
 
 end
