@@ -1,0 +1,18 @@
+<% provide(:title, "New Car") %>
+<h1> Add a car model to your set </h1>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@car) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+
+            <%= f.label :model %>
+            <%= f.text_field :model, autofocus: true, autocomplete: "model", class: 'form-control' %>
+
+            <%= f.label "Battery capacity (KWh)".to_sym %>
+            <%= f.text_field :battery_capacity, autofocus: true, autocomplete: "battery_capacity", class: 'form-control' %>
+
+            <%= f.submit "Add model", class: "btn btn-primary btn-block" %>
+        <% end %>
+    </div>
+</div>

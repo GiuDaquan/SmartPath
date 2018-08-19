@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  model: MyString
+  battery_capacity: 1
+  user: one
+
+two:
+  model: MyString
+  battery_capacity: 1
+  user: two
