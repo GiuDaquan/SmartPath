@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
 
     def search
     end
-
+    
     def result
 
         res = HTTP.get(MAPBOX_GEOCODING_URL + ori, params: { access_token: ENV["MAPBOX_TOKEN"], country: "it" }).body

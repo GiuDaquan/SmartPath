@@ -48,7 +48,7 @@ class ReviewsController < ApplicationController
 
 	def destroy
 		Review.find(params[:id]).destroy
-		flash[:success] = "You have succesfully deleted your review"
+		flash[:success] = "You have succesfully deleted the review"
 		redirect_to reviews_url
 	end
 
@@ -67,14 +67,18 @@ class ReviewsController < ApplicationController
 	end
 
 	def check_ownership!
-		if (current_user.review.id != params[:id].to_i)
-			flash[:danger] = "You don't have the authorization to perform this action"
-			redirect_to reviews_url
+		if (!current_user.is_admin)
+			if (current_user.review.id != params[:id].to_i)
+				flash[:danger] = "You don't have the authorization to perform this action"
+				redirect_to reviews_url
+			end
 		end
 	end
 
 	def user_has_review?
 		!current_user.review.nil?
 	end
+
+	def stop_server
 
 end

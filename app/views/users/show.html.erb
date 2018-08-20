@@ -33,4 +33,6 @@
 
 <hr/>
 
-<%= link_to "Add a model to your set", new_car_path %>
+<% if current_user.id == params[:id].to_i %>
+    <%= link_to "Add a model to your set", new_car_path %>
+<% end %>

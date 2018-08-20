@@ -1,0 +1,18 @@
+<% provide(:title, 'Users') %>
+<h1>Users</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  	<%= render @users %>
+</ul>
+
+<%= will_paginate %>
+
+<br/>
+
+<div class="row">
+    <div class="col-md-4">
+        <%= button_to "Create new User", insertion_path , :method => "get", class: "btn btn-primary btn-block"%>
+    </div>
+</div>

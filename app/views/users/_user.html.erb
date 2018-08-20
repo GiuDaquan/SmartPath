@@ -1,0 +1,22 @@
+<li>
+	<%= gravatar_for user, size: 50 %>
+	<%= link_to user.name, user %>
+	||
+	<% if admin? %>
+		Admin
+	<% end %>
+
+	<br/>
+
+
+	<% if current_user.id != user.id %>
+		<% if user.is_admin %>
+			<%= link_to "Demote user", demotion_path(user) , data: { confirm: "Are you sure?" }%>
+		<% else %>
+			<%= link_to "Promote user", promotion_path(user), data: { confirm: "Are you sure?" }%>
+		<% end %>
+		||
+		<%= link_to "Ban user", ban_path(user), data: { confirm: "Are you sure?" }%>
+	<% end %>
+
+</li>

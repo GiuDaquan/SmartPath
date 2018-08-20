@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
 			devise_parameter_sanitizer.permit(:account_update, keys:[:name])
 		end
 
+		def check_privileges!
+			if (!current_user.is_admin)
+				flash[:danger] = "You are not allowed to perform this action"
+				redirect_to root_path
+			end
+		end
+
 end
