@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
     devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+    devise_scope :user do
+        get  'users/sign_out',  to: 'devise/sessions#destroy'
+    end
 
     root 'static_pages#home'
 
@@ -16,7 +19,7 @@ Rails.application.routes.draw do
     get  'insertions',      to: 'administration#new_user'
     post 'insertions',      to: 'administration#create_user', as: :insertion
     get  'bans/:id',        to: 'administration#ban_user', as: :ban
-    
+
     resources :reviews
     resources :cars, only: [:new, :create, :edit, :update, :destroy]
 

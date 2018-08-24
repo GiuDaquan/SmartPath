@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
 
     def search
     end
-    
+
     def result
 
         res = HTTP.get(MAPBOX_GEOCODING_URL + ori, params: { access_token: ENV["MAPBOX_TOKEN"], country: "it" }).body
@@ -21,14 +21,19 @@ class StaticPagesController < ApplicationController
         dest_coord = (JSON.parse(res))["features"][0]["geometry"]["coordinates"]
 
         @res = get_waypoints(@origin_coord, dest_coord)
-        q_str = q_string(@res)
 
-        @route = HTTP.get(MAPBOX_DIRECTIONS_URL + q_str , params: { geometries: "geojson", access_token: ENV["MAPBOX_TOKEN"] }).body
-        @route = JSON.parse(@route)["routes"][0]["geometry"].to_json
+        if(@res == -1)
+            render 'result'
+        else
+            q_str = q_string(@res)
 
-        @token = HTTP.post(MAPBOX_TOKEN_URL + ENV["MAPBOX_USERNAME"], params: { access_token: ENV["MAPBOX_TOKEN_GENERATOR"] },
-                 json: { scopes: ["styles:read", "fonts:read", "datasets:read", "styles:tiles"], expires: get_expire_time }).body
-        @token = (JSON.parse(@token.to_s))["token"]
+            @route = HTTP.get(MAPBOX_DIRECTIONS_URL + q_str , params: { geometries: "geojson", access_token: ENV["MAPBOX_TOKEN"] }).body
+            @route = JSON.parse(@route)["routes"][0]["geometry"].to_json
+
+            @token = HTTP.post(MAPBOX_TOKEN_URL + ENV["MAPBOX_USERNAME"], params: { access_token: ENV["MAPBOX_TOKEN_GENERATOR"] },
+                     json: { scopes: ["styles:read", "fonts:read", "datasets:read", "styles:tiles"], expires: get_expire_time }).body
+            @token = (JSON.parse(@token.to_s))["token"]
+        end
 
     end
 
@@ -83,6 +88,7 @@ class StaticPagesController < ApplicationController
         res = [origin, dest]
 
         while (current < res.length) do
+
             response = HTTP.get(MAPBOX_DIRECTIONS_URL + queryfy(res, current), params: { access_token: ENV["MAPBOX_TOKEN"] }).body
 
             if ((JSON.parse(response))["routes"] == nil)
@@ -112,8 +118,9 @@ class StaticPagesController < ApplicationController
                 middle_lat = max_lat - (max_lat - min_lat) / 2
                 ch_po = sector == 1 ? ChargingPoint.where(query, min_lon, max_lon, middle_lat, max_lat) :
                                       ChargingPoint.where(query, min_lon, max_lon, min_lat, middle_lat)
+                
 
-                if (!ch_po.nil?)
+                if (!ch_po.empty?)
                     elem = sector == 1 ? ch_po.min_by { |elem| elem.latitude } : ch_po.max_by { |elem| elem.latitude }
                     entry = [elem.longitude, elem.latitude]
                     res.insert(current, entry)

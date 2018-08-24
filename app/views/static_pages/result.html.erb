@@ -1,56 +1,65 @@
 <% provide(:title, "Result") %>
-<h1> Result </h1>
 
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+<% if @res == -1 %>
 
-<div id='map' style="width: 1125px; height: 750px"></div>
+	<h1> No Result found </h1>
 
-<script>
+<% else %>
 
-mapboxgl.accessToken = "<%= @token %>"
+	<h1> Result </h1>
 
-var map = new mapboxgl.Map({
-	container: 'map',
-	style: 'mapbox://styles/mapbox/streets-v10',
-	zoom: 5,
-	center: <%= @origin_coord %>
-});
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
 
-map.on('load', function() {
-	console.log(mapboxgl)
-	route = JSON.parse("<%= @route %>".replace(/&quot;/g, "\""))
-	map.addLayer({
-		id: 'route',
-		type: 'line',
-		source: {
-			type: 'geojson',
-			data: {
-				type: 'Feature',
-				geometry: route
-			}
-		},
-		paint: {
-			'line-width': 2
-		}
+	<div id='map' style="width: 1125px; height: 750px"></div>
+
+	<script>
+
+	mapboxgl.accessToken = "<%= @token %>"
+
+	var map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/mapbox/streets-v10',
+		zoom: 5,
+		center: <%= @origin_coord %>
 	});
-	var way_points = <%= @res %>
-	for (var i = 0; i < way_points.length; i++) {
+
+	map.on('load', function() {
+		console.log(mapboxgl)
+		route = JSON.parse("<%= @route %>".replace(/&quot;/g, "\""))
 		map.addLayer({
-			id: 'waypoint' + i,
-			type: 'circle',
+			id: 'route',
+			type: 'line',
 			source: {
 				type: 'geojson',
 				data: {
 					type: 'Feature',
-					geometry: {
-						type: 'Point',
-						coordinates: way_points[i]
-					}
+					geometry: route
 				}
+			},
+			paint: {
+				'line-width': 2
 			}
 		});
-	}
-});
+		var way_points = <%= @res %>
+		for (var i = 0; i < way_points.length; i++) {
+			map.addLayer({
+				id: 'waypoint' + i,
+				type: 'circle',
+				source: {
+					type: 'geojson',
+					data: {
+						type: 'Feature',
+						geometry: {
+							type: 'Point',
+							coordinates: way_points[i]
+						}
+					}
+				}
+			});
+		}
+	});
 
-</script>
+	</script>
+
+<% end %>

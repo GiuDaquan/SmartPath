@@ -79,6 +79,4 @@ class ReviewsController < ApplicationController
 		!current_user.review.nil?
 	end
 
-	def stop_server
-
 end

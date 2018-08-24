@@ -1,2 +1,28 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<% provide(:title, "About") %>
+<h1>About developers</h1>
+<div class="container-fluid bg-3 text-center">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>
+                <a href="https://github.com/GiuseppeDaquanno"> Giuseppe D'Aquanno </a>
+            </h3>
+            <%= image_tag("https://avatars1.githubusercontent.com/u/33717671?s=400&u=be463fe9f90a07d743c55b589f23062f1e489fad&v=4",
+                           :alt => "ops", class: "img-responsive margin", style: "width:100%",) %>
+        </div>
+        <div class="col-sm-4">
+            <h3>
+                <a href="https://github.com/Zio1993"> Aldo D'Introno </a>
+            </h3>
+            <%= image_tag("https://avatars0.githubusercontent.com/u/24277291?s=460&v=4",
+                           :alt => "ops", class: "img-responsive margin", style: "width:100%",) %>
+        </div>
+        <div class="col-sm-4">
+            <h3>
+                <a href="https://github.com/francifra"> Francesca Fraioli </a>
+            </h3>
+            <%= image_tag("https://avatars2.githubusercontent.com/u/33861356?s=400&v=4",
+                           :alt => "ops", class: "img-responsive margin", style: "width:100%",) %>
+
+        </div>
+    </div>
+</div>

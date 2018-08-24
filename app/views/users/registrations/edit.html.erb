@@ -7,8 +7,8 @@
 
             <%= devise_error_messages! %>
 
-            <%= f.label :Username %>
-            <%= f.text_field :name, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            <%= f.label :name %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control', id: "user_name" %>
 
             <%= f.label :email %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
@@ -22,13 +22,13 @@
             <%= f.label :password %> <i>(Leave empty if you want to keep your password)<i>
             <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
 
-            <%= f.label "Confirm password".to_sym %>
+            <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
 
-            <%= f.label "Current password".to_sym %>
+            <%= f.label :current_password %>
             <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
 
-            <%= f.submit "Update", class: "btn btn-primary btn-block" %>
+            <%= f.submit "Update", class: "btn btn-primary btn-block", id: "Update" %>
 
         <% end %>
 
