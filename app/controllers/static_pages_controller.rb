@@ -118,7 +118,7 @@ class StaticPagesController < ApplicationController
                 middle_lat = max_lat - (max_lat - min_lat) / 2
                 ch_po = sector == 1 ? ChargingPoint.where(query, min_lon, max_lon, middle_lat, max_lat) :
                                       ChargingPoint.where(query, min_lon, max_lon, min_lat, middle_lat)
-                
+
 
                 if (!ch_po.empty?)
                     elem = sector == 1 ? ch_po.min_by { |elem| elem.latitude } : ch_po.max_by { |elem| elem.latitude }

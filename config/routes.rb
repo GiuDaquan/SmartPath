@@ -21,6 +21,6 @@ Rails.application.routes.draw do
     get  'bans/:id',        to: 'administration#ban_user', as: :ban
 
     resources :reviews
-    resources :cars, only: [:new, :create, :edit, :update, :destroy]
+    resources :cars, only: [:new, :create, :edit, :update, :destroy] 
 
 end

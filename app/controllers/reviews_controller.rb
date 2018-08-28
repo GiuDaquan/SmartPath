@@ -31,8 +31,8 @@ class ReviewsController < ApplicationController
 		end
     end
 
-    def update
-		if (user_has_review)
+  def update
+		if (user_has_review?)
 			@review = Review.find(params[:id])
         	if @review.update_attributes(review_params)
             	flash[:success] = "Review updated"
