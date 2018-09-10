@@ -5,9 +5,8 @@
 	<div class="col-md-6 col-md-offset-3">
 		<%= form_for(:user_input, url: result_path) do |f| %>
 
-		<%= f.label :battery_capacity %>
-		<%= f.select(:battery_capacity, current_user.cars.map { |c| [c.model, c.battery_capacity] },
-			{ }, { class: "form-control", required: true }) %>
+		<%= f.label :car_model %>
+		<%= f.select(:battery_capacity, current_user.cars.map { |c| [c.model + "(" + c.battery_capacity.to_s + " KWh" + ")", c.battery_capacity] }, { }, { class: "form-control", required: true }) %>
 
 		<%= f.label :origin %>
 		<%= f.text_field :origin, class: 'form-control', required: true %>
