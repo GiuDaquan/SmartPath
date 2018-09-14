@@ -12,9 +12,11 @@
 	<span class="timestamp">
 		Posted on <%= review.created_at %>
 	</span>
-	<% if current_user.id != review.user.id %>
-		<% if admin? %>
-			<%= link_to "Delete review", review , method: :delete, data: { confirm: "Are you sure?" }%>
+	<% if !current_user.nil? %>
+		<% if current_user.id != review.user.id %>
+			<% if admin? %>
+				<%= link_to "Delete review", review , method: :delete, data: { confirm: "Are you sure?" }%>
+			<% end %>
 		<% end %>
 	<% end %>
 </li>
